@@ -20,7 +20,7 @@ To test things, run:
 jupyter notebook
 
 ```
-Choose then **testing.ipynb**
+Choose then [testing.ipynb](https://github.com/ahmed-BH/TextureBasedImageRetriever/blob/master/testing.ipynb)
 
 OR, you can use it in your script:
 
@@ -50,8 +50,8 @@ for s in similar:
 ```
 
 * In *settings.py* file, you can change some entries to fit your needs such as:
-1. DATASET_DIR 
-2. DESCRIPTORS_DIR
-3. ELITE_NUMBER : number of best fit images to return in the online_phase
-4. DEBUG        : show extras output
+1. *DATASET_DIR* 
+2. *DESCRIPTORS_DIR*
+3. *ELITE_NUMBER* : number of best fit images to return in the online_phase
+4. *DEBUG*        : show extras output
 
