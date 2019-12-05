@@ -24,7 +24,9 @@ class TBIR(object):
         filtered_img  = cv2.filter2D(image,    cv2.CV_8UC3, kernel)
         heigth, width = kernel.shape
         
-        return cv2.resize(filtered_img, (3*width, 3*heigth), interpolation=cv2.INTER_CUBIC)
+        # convert matrix to vector 
+        descriptor = cv2.resize(filtered_img, (3*width, 3*heigth), interpolation=cv2.INTER_CUBIC)
+        return np.hstack(descriptor)
     
     def save_array_to_file(self, **kargs):
         descriptor_to_save = kargs.get("descriptor", None)
@@ -42,7 +44,7 @@ class TBIR(object):
 
     def _descriptor_distance(self, descriptors_file, inputed_descriptor):
         descriptor = np.load(descriptors_file)
-        return abs(distance.euclidean(np.hstack(descriptor), np.hstack(inputed_descriptor)))
+        return abs(distance.euclidean(descriptor, inputed_descriptor))
 
     def offline_phase(self):
         all_descriptors = []
