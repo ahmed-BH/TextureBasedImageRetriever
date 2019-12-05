@@ -52,7 +52,10 @@ class TBIR(object):
             descriptor    = self._get_descriptor(entry)
             self.save_array_to_file(descriptor=descriptor, image_path=entry)
     
-    def online_phase(self, test_iamge):
+    def online_phase(self, test_iamge, **kargs):
+        # how many similar pictures the system will return
+        nb_results      = kargs.get("nb_results", settings.ELITE_NUMBER)
+        
         test_descriptor = self._get_descriptor(test_iamge)
         best_fit_images = []
 
@@ -62,6 +65,6 @@ class TBIR(object):
                     }
             best_fit_images.append(entry)
             best_fit_images.sort(key= lambda x:x["distance"], reverse=False)
-            best_fit_images = best_fit_images[:settings.ELITE_NUMBER]
+            best_fit_images = best_fit_images[:nb_results]
         
         return best_fit_images
