@@ -16,6 +16,11 @@ class TBIR(object):
     def __init__(self, **kargs):
         self.dataset_dir        = kargs.get("dataset_dir", None)
         self.descriptors_dir    = kargs.get("descriptors_dir", None)
+
+        assert self.dataset_dir     != None, "'dataset_dir' keyword needs to be specified"
+        assert self.descriptors_dir != None, "'descriptors_dir' keyword needs to be specified"
+
+        assert os.path.exists(self.dataset_dir) == True, "Couldn't find the dataset_dir: '{}'".format(self.dataset_dir)
     
     def _get_descriptor(self, image_file):
         kernel        = cv2.getGaborKernel((21, 21), 8.0, np.pi/4, 10.0, 0.5, 0, ktype=cv2.CV_32F)
